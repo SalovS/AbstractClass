@@ -1,7 +1,7 @@
 interface Client {
-    public double balance();
+    public double getBalance();
 
-    public boolean withdrawMoney(double money);
+    public void withdrawMoney(double money);
 
-    public boolean depositMoney(double money);
+    public void depositMoney(double money);
 }

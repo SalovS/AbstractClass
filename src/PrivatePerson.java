@@ -1,33 +1,36 @@
 public class PrivatePerson implements Client {
-    protected double moneyInTheAccount;
+    protected double balance;
 
     @Override
-    public double balance() {
-        return moneyInTheAccount;
+    public double getBalance() {
+        return balance;
     }
 
     @Override
-    public boolean withdrawMoney(double money) {
-        if(enoughMoney(money)){
-            moneyInTheAccount -= money;
+    public void withdrawMoney(double money) {
+        if(isWithdrawMoney(money)){
+            balance -= money;
+        }
+    }
+
+    protected boolean isWithdrawMoney(double money){
+        if(balance >= money) {
             return true;
         }
         return false;
     }
 
-    protected boolean enoughMoney(double money) {
-        if(moneyInTheAccount >= money) {
-            return true;
+    @Override
+    public void depositMoney(double money) {
+        if(isDepositMoney(money)){
+            balance += money;
         }
-        return false;
     }
 
-    @Override
-    public boolean depositMoney(double money) {
-        if(money > Double.MAX_VALUE - moneyInTheAccount){
+    protected boolean isDepositMoney(double money){
+        if(money > Double.MAX_VALUE - balance){
             return false;
         }
-        moneyInTheAccount += money;
         return true;
     }
 }
