@@ -1,5 +1,5 @@
 public class PrivatePerson implements Client {
-    protected double balance;
+    private double balance;
 
     @Override
     public double getBalance() {
@@ -14,10 +14,7 @@ public class PrivatePerson implements Client {
     }
 
     protected boolean isWithdrawMoney(double money){
-        if(balance >= money) {
-            return true;
-        }
-        return false;
+        return balance >= money;
     }
 
     @Override
@@ -28,9 +25,6 @@ public class PrivatePerson implements Client {
     }
 
     protected boolean isDepositMoney(double money){
-        if(money > Double.MAX_VALUE - balance){
-            return false;
-        }
-        return true;
+        return (money < Double.MAX_VALUE - balance);
     }
 }
